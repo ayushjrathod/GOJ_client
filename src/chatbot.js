@@ -40,7 +40,7 @@ class Chatbox {
   //When send button is pressed
   async onSendButton(chatbox) {
     var textField = chatbox.querySelector("input");
-    let userInput = textField.value;  
+    let userInput = textField.value;
     const chatBoxMessages = chatbox.querySelector(".chatboxmessages");
 
     if (userInput === "") {
@@ -52,7 +52,7 @@ class Chatbox {
     userMessage.textContent = userInput;
     userMessage.classList.add("messagesitemoperator");
     chatBoxMessages.appendChild(userMessage);
-    chatbox.scrollTop = chatbox.scrollHeight
+    chatbox.scrollTop = chatbox.scrollHeight;
 
     //Show Loader
     this.showLoader();
@@ -70,6 +70,7 @@ class Chatbox {
         },
       });
 
+      textField.value = "";
       //Handling Streamed Response
       const reader = response.body.getReader();
       console.log(reader);
@@ -78,7 +79,7 @@ class Chatbox {
       answer.textContent = "";
       answer.classList.add("messagesitem");
       chatBoxMessages.appendChild(answer);
-      
+
       let jsonString = "";
 
       while (true) {
@@ -90,9 +91,6 @@ class Chatbox {
       }
       const jsonResponse = JSON.parse(jsonString);
       answer.textContent = jsonResponse.answer;
-
-      //resetting user input
-      textField.value = "";
     } catch (error) {
       console.error("Error:", error);
       textField.value = "";

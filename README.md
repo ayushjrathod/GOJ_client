@@ -1,1 +1,1 @@
-A prototype for chatbot
+A prototype for chatbot.
